@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
     margin: 0;
     padding: 0;
@@ -199,4 +200,207 @@ padding-left: 15px;
     background-image: -o-linear-gradient(top, #d147e6, #c044f5);
     background-image: linear-gradient(to bottom, #d147e6, #c044f5);
     text-decoration: none;
+=======
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(233, 245, 247);
+    background-color: #c044f5;
+}
+
+.container {
+    padding-top: 130px;
+    height: 100vh;
+    max-width: 900px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 200px;
+    row-gap: 150px;
+}
+
+.card {
+    height: 350px;
+    width: 300px;
+    margin: 10px;
+    transition: 300ms;
+}
+
+.Trabajo,
+.Trabajo_2,
+.Trabajo_3,
+.Trabajo_4 {
+    height: 350px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30%;
+    background-color: rgb(250, 250, 250);
+    transition: 300ms;
+    position: absolute;
+}
+
+.imagen_trabajo {
+    height: 300px;
+    width: 280px;
+    background-image: url(fotos_MyWeb/Kirby.jpeg);
+    background-size: cover;
+    margin-bottom: 200px;
+    transition: 300ms;
+    filter: drop-shadow(5px -4px 10px #000);
+}
+
+.imagen_trabajo_2 {
+    height: 300px;
+    width: 280px;
+    background-image: url(fotos_MyWeb/toadette.jpeg);
+    background-size: cover;
+    margin-bottom: 200px;
+    transition: 300ms;
+    filter: drop-shadow(5px -4px 10px #000);
+}
+
+.imagen_trabajo_3 {
+    height: 300px;
+    width: 280px;
+    background-image: url(fotos_MyWeb/Zelda.jpeg);
+    background-size: cover;
+    margin-bottom: 200px;
+    transition: 300ms;
+    filter: drop-shadow(5px -4px 10px #000);
+}
+
+.imagen_trabajo_4 {
+    height: 310px;
+    width: 280px;
+    background-image: url(fotos_MyWeb/Yoshi.jpeg);
+    background-size: cover;
+    margin-bottom: 200px;
+    transition: 300ms;
+    filter: drop-shadow(5px -4px 10px #000);
+}
+
+.detalle,
+.detalle_2,
+.detalle_3,
+.detalle_4 {
+    height: 200px;
+    width: 300px;
+    background-color: rgb(177, 123, 194);
+    position: absolute;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+    margin-top: 150px;
+    z-index: 2;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    transition: 300ms;
+}
+
+/*Hover*/
+
+.card:hover{
+transform: scale(1.1);
+}
+
+.card:hover .imagen_trabajo {
+    transform: translateY(-40px);
+    transition: 300ms;
+    filter: none;
+    background-image: url(fotos_MyWeb/Kirby2.jpeg);
+}
+
+.card:hover .imagen_trabajo_2 {
+    transform: translateY(-40px);
+    transition: 300ms;
+    filter: none;
+    background-image: url(fotos_MyWeb/Toad.jpeg);
+}
+
+.card:hover .imagen_trabajo_3 {
+    transform: translateY(-40px);
+    transition: 300ms;
+    filter: none;
+    background-image: url(fotos_MyWeb/Link.jpeg);
+}
+
+.card:hover .imagen_trabajo_4 {
+    transform: translateY(-40px);
+    transition: 300ms;
+    filter: none;
+    background-image: url(fotos_MyWeb/yoshi2.jpeg);
+}
+
+.card:hover .Trabajo {
+    background-image: radial-gradient(white, rgb(146, 10, 146));
+}
+
+.card:hover .Trabajo_2 {
+    background-image: radial-gradient(white, rgb(146, 10, 146));
+}
+
+.card:hover .Trabajo_3 {
+    background-image: radial-gradient(white, rgb(146, 10, 146));
+}
+
+.card:hover .Trabajo_4 {
+    background-image: radial-gradient(white, rgb(146, 10, 146));
+}
+
+/*texto y botton*/
+
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h2 {
+    margin: auto;
+    width: 90%;
+padding-left: 15px;
+}
+
+.btn {
+    width: 170px;
+    margin: auto;
+    background: #e49ff5;
+    background-image: -webkit-linear-gradient(top, #e49ff5, #6b256b);
+    background-image: -moz-linear-gradient(top, #e49ff5, #6b256b);
+    background-image: -ms-linear-gradient(top, #e49ff5, #6b256b);
+    background-image: -o-linear-gradient(top, #e49ff5, #6b256b);
+    background-image: linear-gradient(to bottom, #e49ff5, #6b256b);
+    -webkit-border-radius: 10;
+    -moz-border-radius: 10;
+    border-radius: 10px;
+    -webkit-box-shadow: 1px 2px 5px #520052;
+    -moz-box-shadow: 1px 2px 5px #520052;
+    box-shadow: 1px 2px 5px #520052;
+    font-family: sans-serif;
+    color: #ffffff;
+    font-size: 30px;
+    padding: 10px 23px 9px 30px;
+    border: solid #996d99 2px;
+    text-decoration: none;
+  }
+  
+  .btn:hover {
+    background: #d147e6;
+    background-image: -webkit-linear-gradient(top, #d147e6, #c044f5);
+    background-image: -moz-linear-gradient(top, #d147e6, #c044f5);
+    background-image: -ms-linear-gradient(top, #d147e6, #c044f5);
+    background-image: -o-linear-gradient(top, #d147e6, #c044f5);
+    background-image: linear-gradient(to bottom, #d147e6, #c044f5);
+    text-decoration: none;
+>>>>>>> b730f179ec1be8eb6b2883c843e52494820d8b4d
   }

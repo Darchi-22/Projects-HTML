@@ -35,7 +35,8 @@ body {
 .Trabajo,
 .Trabajo_2,
 .Trabajo_3,
-.Trabajo_4 {
+.Trabajo_4, 
+.Trabajo_5 {
     height: 350px;
     width: 300px;
     display: flex;
@@ -87,10 +88,21 @@ body {
     filter: drop-shadow(5px -4px 10px #000);
 }
 
+.imagen_trabajo_5 {
+    height: 310px;
+    width: 280px;
+    background-image: url(fotos_MyWeb/Yoshi.jpeg);
+    background-size: cover;
+    margin-bottom: 200px;
+    transition: 300ms;
+    filter: drop-shadow(5px -4px 10px #000);
+}
+
 .detalle,
 .detalle_2,
 .detalle_3,
-.detalle_4 {
+.detalle_4,
+.detalle_5 {
     height: 200px;
     width: 300px;
     background-color: rgb(177, 123, 194);

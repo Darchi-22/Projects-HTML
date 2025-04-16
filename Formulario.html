@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            display: flex;
+            position: fixed;
+            left: 20%;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url("https://art.pixilart.com/59646f13fa1663f.gif");
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        .form-container {
+            background-color: transparent;
+            padding: 30px;
+            border-radius: 15px;
+            width: 300px;
+            box-shadow: 0px 0px 30px rgb(234, 188, 255);
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .form-field {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            box-sizing: border-box;
+            font-size: 14px;
+            color: #666;
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 12px;
+            padding-right: 30px;
+        }
+
+        input[type="date"] {
+            padding-right: 10px;
+        }
+
+        button {
+            background-color: linear-gradient(rgb(50, 117, 218), rgb(101, 175, 243), rgb(144, 225, 250));
+            color: #000;
+            border: 1px solid #999;
+            padding: 8px 16px;
+            cursor: pointer;
+            margin: 0 auto;
+            display: block;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #e6d6d6;
+        }
+
+        .btn-enviar {
+            background: linear-gradient(135deg, #baa2d1, #f9cafd);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 10px 20px;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-enviar:hover {
+            transform: scale(1.05);
+        }
+
+        .date-input-container {
+            position: relative;
+        }
+
+        .date-input-container input {
+            padding-right: 30px;
+        }
+
+        .date-input-container:after {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .btn-error.swal2-confirm {
+            background: linear-gradient(rgb(219, 78, 43), rgb(247, 161, 81), rgb(252, 252, 86));
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+            padding: 8px 20px;
+            border: none;
+            box-shadow: none;
+            font-size: 16px;
+        }
+
+        .btn-success.swal2-confirm {
+            background: linear-gradient(rgb(29, 7, 82), rgb(35, 39, 228), rgb(90, 132, 248));
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+            padding: 8px 20px;
+            border: none;
+            box-shadow: none;
+            font-size: 16px;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .radio-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #7d43e9;
+        }
+
+        .star {
+            position: absolute;
+            pointer-events: none;
+            color: yellow;
+            font-size: 20px;
+            animation: fadeOut 0.8s forwards;
+            user-select: none;
+            z-index: 9999;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: translateY(-10px) scale(0.5);
+            }
+        }
+
+        input[type="radio"]:hover,
+        input[type="checkbox"]:hover,
+        label:hover,
+        button:hover,
+        select:hover {
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h1>REGISTRARSE</h1>
+        <form id="registroForm">
+            <div class="form-field">
+                <input type="text" id="nombres" name="nombres" placeholder="Nombres">
+            </div>
+            <div class="form-field">
+                <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos">
+            </div>
+            <div class="form-field">
+                <input type="tel" id="telefono" name="telefono" placeholder="Numero de telefono">
+            </div>
+            <div class="form-field">
+                <select id="opciones" name="opciones">
+                    <option value="" disabled selected>Tipo de documento</option>
+                    <option value="opcion1">Cedula Ciudadania</option>
+                    <option value="opcion2">Cedula Extranjeria</option>
+                    <option value="opcion3">Documento Identidad</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <input type="text" id="documento" name="documento" placeholder="Numero de documento">
+            </div>
+            <div class="form-field">
+                <input type="email" id="correo" name="correo" placeholder="Correo electronico">
+            </div>
+            <div class="form-field date-input-container">
+                <input type="date" id="fecha" name="fecha" placeholder="dd/mm/aaaa">
+            </div>
+            <div class="form-field">
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="genero" value="Hombre"> Masculino
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="genero" value="Mujer"> Femenino
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="genero" value="39 tipos de gay"> Otro
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn-enviar">ENVIAR</button>
+        </form>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('registroForm');
+            const resultados = document.getElementById('resultados');
+            const datosGuardados = document.getElementById('datosGuardados');
+
+            let registros = [];
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const nuevoRegistro = {
+                    nombres: document.getElementById('nombres').value,
+                    apellidos: document.getElementById('apellidos').value,
+                    telefono: document.getElementById('telefono').value,
+                    opcion: document.getElementById('opciones').value,
+                    documento: document.getElementById('documento').value,
+                    correo: document.getElementById('correo').value,
+                    fecha: document.getElementById('fecha').value
+                };
+                const list = form.querySelectorAll('input, select');
+                const telefono = document.getElementById('telefono').value.trim();
+                const documento = document.getElementById('documento').value.trim();
+                const generoSeleccionado = form.querySelector('input[name="genero"]:checked');
+                let soloNumeros = /^\d+$/;
+                let camposVacios = [];
+
+                list.forEach(campo => {
+                    if (campo.value.trim() === "") {
+                        camposVacios.push(campo.placeholder || campo.name);
+                    }
+                });
+
+                if (soloNumeros.test(documento) && soloNumeros.test(telefono) && telefono.length === 10 && generoSeleccionado) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Formulario completado',
+                        text: 'Tus datos han sido guardados',
+                        background: 'url(https://assets.pinterest.com/ext/embed.html?id=78672324735715578)',
+                        iconColor: '#green',
+                        position: 'center-end',
+                        showConfirmButton: true,
+                        confirmButtonText: 'OK✅',
+                        customClass: {
+                            confirmButton: 'btn-success'
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ha ocurrido un error',
+                        text: 'Asegurese de no dejar campos vacios, el telefono debe tener solo 10 digitos y no usar caracteres especiales',
+                        background: 'url(https://assets.pinterest.com/ext/embed.html?id=78672324735715578)',
+                        iconColor: '#ff0000',
+                        position: 'center',
+                        showConfirmButton: true,
+                        confirmButtonText: 'Entendido',
+                        customClass: {
+                            confirmButton: 'btn-error'
+                        },
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                    });
+                }
+
+                registros.unshift(nuevoRegistro);
+
+                console.log('Registro guardado:', nuevoRegistro);
+                console.log('Todos los registros:', registros);
+
+                form.reset();
+            });
+        });
+
+        function getRandomColor() {
+          const colors = ['#FFD700', '#FF69B4', '#87CEEB', '#ADFF2F', '#FFA500'];
+          return colors[Math.floor(Math.random() * colors.length)];
+        }
+      
+        document.addEventListener('mousemove', (e) => {
+          const star = document.createElement('div');
+          star.classList.add('star');
+          star.innerText = '★';
+          star.style.color = getRandomColor();
+      
+          document.body.appendChild(star);
+      
+          star.style.left = `${e.pageX}px`;
+          star.style.top = `${e.pageY}px`;
+      
+          setTimeout(() => {
+            star.remove();
+          }, 800);
+        });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      
+</body>
+
+</html>

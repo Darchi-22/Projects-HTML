@@ -93,7 +93,7 @@ body {
 .imagen_trabajo_5 {
     height: 310px;
     width: 280px;
-    background-image: url(fotos_MyWeb/Yoshi.jpeg);
+    background-image: url(fotos_MyWeb/daisy.jpeg);
     background-size: cover;
     margin-bottom: 200px;
     transition: 300ms;
@@ -103,7 +103,7 @@ body {
 .imagen_trabajo_6 {
     height: 310px;
     width: 280px;
-    background-image: url(fotos_MyWeb/Yoshi.jpeg);
+    background-image: url(fotos_MyWeb/peach.jpeg);
     background-size: cover;
     margin-bottom: 200px;
     transition: 300ms;
@@ -114,7 +114,7 @@ body {
 .imagen_trabajo_7 {
     height: 310px;
     width: 280px;
-    background-image: url(fotos_MyWeb/Yoshi.jpeg);
+    background-image: url(fotos_MyWeb/fox2.jpeg);
     background-size: cover;
     margin-bottom: 200px;
     transition: 300ms;
@@ -180,21 +180,21 @@ body {
     transform: translateY(-40px);
     transition: 300ms;
     filter: none;
-    background-image: url(fotos_MyWeb/yoshi2.jpeg);
+    background-image: url(fotos_MyWeb/Luigi.jpeg);
 }
 
 .card:hover .imagen_trabajo_6 {
     transform: translateY(-40px);
     transition: 300ms;
     filter: none;
-    background-image: url(fotos_MyWeb/yoshi2.jpeg);
+    background-image: url(fotos_MyWeb/Mario.jpeg);
 }
 
 .card:hover .imagen_trabajo_7 {
     transform: translateY(-40px);
     transition: 300ms;
     filter: none;
-    background-image: url(fotos_MyWeb/yoshi2.jpeg);
+    background-image: url(fotos_MyWeb/Fox.jpeg);
 }
 
 .card:hover .Trabajo_1 {

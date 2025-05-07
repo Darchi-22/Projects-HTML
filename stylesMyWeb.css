@@ -32,11 +32,13 @@ body {
     transition: 300ms;
 }
 
-.Trabajo,
+.Trabajo_1,
 .Trabajo_2,
 .Trabajo_3,
-.Trabajo_4, 
-.Trabajo_5 {
+.Trabajo_4,
+.Trabajo_5,
+.Trabajo_6,
+.Trabajo_7 {
     height: 350px;
     width: 300px;
     display: flex;
@@ -48,7 +50,7 @@ body {
     position: absolute;
 }
 
-.imagen_trabajo {
+.imagen_trabajo_1 {
     height: 300px;
     width: 280px;
     background-image: url(fotos_MyWeb/Kirby.jpeg);
@@ -98,11 +100,34 @@ body {
     filter: drop-shadow(5px -4px 10px #000);
 }
 
-.detalle,
+.imagen_trabajo_6 {
+    height: 310px;
+    width: 280px;
+    background-image: url(fotos_MyWeb/Yoshi.jpeg);
+    background-size: cover;
+    margin-bottom: 200px;
+    transition: 300ms;
+    filter: drop-shadow(5px -4px 10px #000);
+
+}
+
+.imagen_trabajo_7 {
+    height: 310px;
+    width: 280px;
+    background-image: url(fotos_MyWeb/Yoshi.jpeg);
+    background-size: cover;
+    margin-bottom: 200px;
+    transition: 300ms;
+    filter: drop-shadow(5px -4px 10px #000);
+}
+
+.detalle_1,
 .detalle_2,
 .detalle_3,
 .detalle_4,
-.detalle_5 {
+.detalle_5,
+.detalle_6,
+.detalle_7 {
     height: 200px;
     width: 300px;
     background-color: rgb(177, 123, 194);
@@ -118,11 +143,11 @@ body {
 
 /*Hover*/
 
-.card:hover{
-transform: scale(1.1);
+.card:hover {
+    transform: scale(1.1);
 }
 
-.card:hover .imagen_trabajo {
+.card:hover .imagen_trabajo_1 {
     transform: translateY(-40px);
     transition: 300ms;
     filter: none;
@@ -150,7 +175,28 @@ transform: scale(1.1);
     background-image: url(fotos_MyWeb/yoshi2.jpeg);
 }
 
-.card:hover .Trabajo {
+.card:hover .imagen_trabajo_5 {
+    transform: translateY(-40px);
+    transition: 300ms;
+    filter: none;
+    background-image: url(fotos_MyWeb/yoshi2.jpeg);
+}
+
+.card:hover .imagen_trabajo_6 {
+    transform: translateY(-40px);
+    transition: 300ms;
+    filter: none;
+    background-image: url(fotos_MyWeb/yoshi2.jpeg);
+}
+
+.card:hover .imagen_trabajo_7 {
+    transform: translateY(-40px);
+    transition: 300ms;
+    filter: none;
+    background-image: url(fotos_MyWeb/yoshi2.jpeg);
+}
+
+.card:hover .Trabajo_1 {
     background-image: radial-gradient(white, rgb(146, 10, 146));
 }
 
@@ -166,6 +212,18 @@ transform: scale(1.1);
     background-image: radial-gradient(white, rgb(146, 10, 146));
 }
 
+.card:hover .Trabajo_5 {
+    background-image: radial-gradient(white, rgb(146, 10, 146));
+}
+
+.card:hover .Trabajo_6 {
+    background-image: radial-gradient(white, rgb(146, 10, 146));
+}
+
+.card:hover .Trabajo_7 {
+    background-image: radial-gradient(white, rgb(146, 10, 146));
+}
+
 /*texto y botton*/
 
 h1 {
@@ -177,7 +235,7 @@ h1 {
 h2 {
     margin: auto;
     width: 90%;
-padding-left: 15px;
+    padding-left: 15px;
 }
 
 .btn {
@@ -201,9 +259,9 @@ padding-left: 15px;
     padding: 10px 23px 9px 30px;
     border: solid #996d99 2px;
     text-decoration: none;
-  }
-  
-  .btn:hover {
+}
+
+.btn:hover {
     background: #d147e6;
     background-image: -webkit-linear-gradient(top, #d147e6, #c044f5);
     background-image: -moz-linear-gradient(top, #d147e6, #c044f5);
@@ -211,4 +269,4 @@ padding-left: 15px;
     background-image: -o-linear-gradient(top, #d147e6, #c044f5);
     background-image: linear-gradient(to bottom, #d147e6, #c044f5);
     text-decoration: none;
-  }
+}

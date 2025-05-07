@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario-tabla</title>
+    <style>
+        body {
+            font-family: cursive;
+            margin: 0;
+            padding: 20px;
+            background-image: url("https://art.pixilart.com/59646f13fa1663f.gif");
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            padding: 30px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        button.register-btn {
+            background: linear-gradient(135deg, #af8dcf, #f8bafd);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button.register-btn:hover {
+            background: linear-gradient(135deg, #baa2d1, #f9cafd);
+        }
+
+        table {
+            border-radius: 15px;
+            border: solid 1px #f5f5f5;
+            width: 100%;
+            border-collapse: collapse;
+            background-color: transparent;
+            box-shadow: 0px 0px 30px rgb(234, 188, 255);
+            color: #f5f5f5;
+        }
+
+        th,
+        td,
+        tr {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            background-color: transparent;
+            box-shadow: 0px 0px 30px rgb(234, 188, 255);
+        }
+
+        th {
+            background-color: transparent;
+            font-weight: bold;
+            border: solid 1px #f5f5f5;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+            color: rgb(26, 26, 26);
+        }
+
+        .containerForm {
+            width: 90%;
+            margin: 5px 15px;
+            align-items: center;
+        }
+
+
+        .action-buttons button {
+            margin: 0 5px;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .editar {
+            background-color: #96aec2;
+            color: white;
+        }
+
+        .editar:hover {
+            background-color: #506677;
+        }
+
+        .eliminar {
+            background-color: #fd7063;
+            color: white;
+        }
+
+        .eliminar:hover {
+            background-color: #923434;
+        }
+
+        .swal2-popup input,
+        .swal2-popup select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .swal2-popup .gender-group {
+            margin: 10px 0;
+        }
+
+        .swal2-popup label {
+            margin-right: 15px;
+        }
+
+        .gender-group {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            font-size: larger;
+            font-weight: 100;
+            color: black;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 20px;
+            color: #d4d4d4;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="register-btn">Registrarse</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Teléfonos</th>
+                    <th>Tipo Documento</th>
+                    <th>Número Documento</th>
+                    <th>Correo</th>
+                    <th>Género</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody id="tableData">
+                <tr class="empty-row">
+                    <td colspan="9" class="empty-message">No hay registros disponibles</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let loginbutton = document.querySelector('.register-btn');
+        let editIndex = null;
+
+        const soloNumeros = /^[0-9]+$/;
+
+        loginbutton.addEventListener("click", () => {
+            openForm();
+        });
+
+        function openForm(data = {}, index = null) {
+            Swal.fire({
+                title: index !== null ? 'Editar registro' : 'Nuevo registro',
+                html: `
+                <div class="containerForm">
+                <form id="registroForm">
+                    <input type="text" id="nombre" placeholder="Nombres" value="${data.nombre || ''}">
+                    <input type="text" id="apellido" placeholder="Apellidos" value="${data.apellido || ''}">
+                    <input type="tel" id="telefono" placeholder="Teléfono (máx. 10 dígitos)" value="${data.telefono || ''}">
+                    <select id="documento">
+                        <option value="" disabled ${!data.documento ? 'selected' : ''}>Tipo de documento</option>
+                        <option value="Cedula Ciudadania" ${data.documento === 'Cedula Ciudadania' ? 'selected' : ''}>Cédula Ciudadanía</option>
+                        <option value="Cedula Extranjeria" ${data.documento === 'Cedula Extranjeria' ? 'selected' : ''}>Cédula Extranjería</option>
+                        <option value="Documento Identidad" ${data.documento === 'Documento Identidad' ? 'selected' : ''}>Documento Identidad</option>
+                    </select>
+                    <input type="text" id="n-documento" placeholder="Número documento" value="${data.numDocumento || ''}">
+                    <input type="email" id="correo" placeholder="Correo electrónico" value="${data.correo || ''}">
+                    <input type="date" id="fecha" value="${data.fecha || ''}">
+                    <div class="gender-group">
+                        <label><input type="radio" name="genero" value="Hombre" ${data.genero === 'Hombre' ? 'checked' : ''}> Masculino</label>
+                        <label><input type="radio" name="genero" value="Mujer" ${data.genero === 'Mujer' ? 'checked' : ''}> Femenino</label>
+                    </div>
+                </form>
+                </div>
+                `,
+                showCancelButton: true,
+                confirmButtonText: index !== null ? 'Guardar cambios' : 'Registrar',
+                cancelButtonText: 'Cancelar',
+                focusConfirm: false,
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                background: 'url(https://cdn.glitch.global/d0d5984c-e3d1-4d2b-a5d1-6369c242fd08/error1.jpeg?v=1744779773911)',
+                preConfirm: () => {
+                    const form = Swal.getPopup();
+                    const nombre = form.querySelector('#nombre').value.trim();
+                    const apellido = form.querySelector('#apellido').value.trim();
+                    const telefono = form.querySelector('#telefono').value.trim();
+                    const documento = form.querySelector('#documento').value;
+                    const numDocumento = form.querySelector('#n-documento').value.trim();
+                    const correo = form.querySelector('#correo').value.trim();
+                    const fecha = form.querySelector('#fecha').value;
+                    const generoEl = form.querySelector('input[name="genero"]:checked');
+
+                    if (!nombre || !apellido || !telefono || !documento || !numDocumento || !correo || !fecha || !generoEl) {
+                        Swal.showValidationMessage('Por favor, completa todos los campos');
+                        return false;
+                    }
+                    if (!soloNumeros.test(telefono)) {
+                        Swal.showValidationMessage('El teléfono debe contener solo números');
+                        return false;
+                    }
+                    if (telefono.length > 10) {
+                        Swal.showValidationMessage('El teléfono debe tener máximo 10 dígitos');
+                        return false;
+                    }
+                    if (!soloNumeros.test(numDocumento)) {
+                        Swal.showValidationMessage('El número de documento debe contener solo números');
+                        return false;
+                    }
+
+                    return {
+                        nombre,
+                        apellido,
+                        telefono,
+                        documento,
+                        numDocumento,
+                        correo,
+                        fecha,
+                        genero: generoEl.value
+                    };
+                }
+            }).then(result => {
+                if (result.isConfirmed && result.value) {
+                    if (index !== null) {
+                        updateRow(index, result.value);
+                    } else {
+                        addRow(result.value);
+                    }
+                }
+            });
+        }
+
+        function addRow(data) {
+            const table = document.getElementById('tableData');
+            const emptyRow = table.querySelector('.empty-row');
+            if (emptyRow) {
+                emptyRow.remove();
+            }
+
+            const row = table.insertRow();
+            row.innerHTML = `
+                <td>${data.nombre}</td>
+                <td>${data.apellido}</td>
+                <td>${data.telefono}</td>
+                <td>${data.documento}</td>
+                <td>${data.numDocumento}</td>
+                <td>${data.correo}</td>
+                <td>${data.genero}</td>
+                <td>${data.fecha}</td>
+                <td class="action-buttons">
+                    <button class="editar">Editar</button>
+                    <button class="eliminar">Eliminar</button>
+                </td>
+            `;
+
+            row.querySelector(".eliminar").addEventListener("click", () => {
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "Esta acción no se puede revertir",
+                    icon: 'warning',
+                    iconColor: '#red',
+                    background: 'url(https://cdn.glitch.global/d0d5984c-e3d1-4d2b-a5d1-6369c242fd08/error1.jpeg?v=1744779773911)',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        row.remove();
+
+                        // Si no hay más filas, mostrar mensaje de "no hay registros"
+                        if (table.rows.length === 0) {
+                            const emptyRow = table.insertRow();
+                            emptyRow.classList.add('empty-row');
+                            emptyRow.insertCell(0).innerHTML = '<td colspan="9" class="empty-message">No hay registros disponibles</td>';
+                            emptyRow.cells[0].colSpan = 9;
+                        }
+
+                        Swal.fire({
+                            title: '¡Eliminado!',
+                            text: 'El registro ha sido eliminado.',
+                            icon: 'success',
+                            iconColor: '#green',
+                            background: 'url(https://cdn.glitch.global/d0d5984c-e3d1-4d2b-a5d1-6369c242fd08/error1.jpeg?v=1744779773911)'
+                        }
+                        )
+                    }
+                });
+            });
+
+            row.querySelector(".editar").addEventListener("click", () => {
+                const index = row.rowIndex - 1;
+                const datosFila = {
+                    nombre: row.cells[0].textContent,
+                    apellido: row.cells[1].textContent,
+                    telefono: row.cells[2].textContent,
+                    documento: row.cells[3].textContent,
+                    numDocumento: row.cells[4].textContent,
+                    correo: row.cells[5].textContent,
+                    genero: row.cells[6].textContent,
+                    fecha: row.cells[7].textContent
+                };
+                openForm(datosFila, index);
+            });
+        }
+
+        function updateRow(index, newData) {
+            const table = document.getElementById('tableData');
+            const row = table.rows[index];
+            row.cells[0].textContent = newData.nombre;
+            row.cells[1].textContent = newData.apellido;
+            row.cells[2].textContent = newData.telefono;
+            row.cells[3].textContent = newData.documento;
+            row.cells[4].textContent = newData.numDocumento;
+            row.cells[5].textContent = newData.correo;
+            row.cells[6].textContent = newData.genero;
+            row.cells[7].textContent = newData.fecha;
+
+            Swal.fire({
+                title: '¡Actualizado!',
+                text: 'El registro ha sido actualizado correctamente.',
+                icon: 'success',
+                iconColor: '#green',
+                background: 'url(https://cdn.glitch.global/d0d5984c-e3d1-4d2b-a5d1-6369c242fd08/error1.jpeg?v=1744779773911)'
+            }
+            );
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

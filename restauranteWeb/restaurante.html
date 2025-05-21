@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refuerzo de funciones, pintado, etc - Profe Alex</title>
+    <style>
+        * {
+            font-family: cursive;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 1rem;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-row: auto auto;
+            column-gap: 2vw;
+            padding: 2vh 2vw;
+        }
+
+        #abrir {
+            width: 20vw;
+            min-width: 120px;
+            padding: 0.5em 1em;
+            font-size: 1rem;
+        }
+
+        #salir {
+            position: absolute;
+            top: 2vh;
+            right: 1vw;
+            font-size: 1.2rem;
+            background-color: white;
+            border-style: none;
+        }
+
+        #alert-dialog {
+            position: fixed;
+            top: 5vh;
+            left: 2vw;
+            margin: 0;
+            border: none;
+            padding: 1em;
+            z-index: 1000;
+            width: 90vw;
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .container-registro {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .title h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .buscador {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5em;
+            align-items: center;
+            width: 80%;
+        }
+
+        #btnBuscar {
+            background-color: white;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0.3em 0.6em;
+            border-radius: 8px;
+            box-shadow: 0px 0px 5px rgba(0, 128, 0, 0.3);
+        }
+
+        #btnBuscar:hover {
+            background-color: #e0f2f1;
+        }
+
+        #limpiarBusqueda {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .formulario {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .formulario input,
+        select {
+            width: 100%;
+            padding: 0.5em;
+            font-size: 1rem;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        #btnEliminar,
+        #btnEditar,
+        #registrar {
+            font-size: 1rem;
+            padding: 0.5em 1em;
+            width: 60%;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        #mesas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1em;
+            width: 100%;
+        }
+
+        #mesa-img {
+            width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+        }
+
+        #card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5em;
+            padding: 1em;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+            font-size: 1rem;
+        }
+
+        #card p,
+        #card span {
+            margin: 0.2em 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            #alert-dialog {
+                left: 5vw;
+                width: 90vw;
+                top: 5vh;
+            }
+
+            #abrir {
+                width: 40vw;
+                font-size: 1rem;
+            }
+
+            .title h1 {
+                font-size: 1.3rem;
+            }
+
+            #card {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            html {
+                font-size: 14px;
+            }
+
+            #abrir {
+                width: 60vw;
+            }
+
+            #alert-dialog {
+                width: 95vw;
+                left: 2.5vw;
+            }
+
+            #card {
+                font-size: 0.8rem;
+            }
+
+            #mesa-img {
+                max-height: 120px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="buscador">
+            <input type="search" id="lupa" name="buscar" placeholder="Buscar">
+            <button id="limpiarBusqueda">❌</button>
+            <button id="btnBuscar" title="Buscar">🔍</button>
+        </div>
+        <dialog id="alert-dialog">
+            <div class="container-registro">
+                <div class="title">
+                    <h1>Restaurante</h1>
+                </div>
+                <div class="formulario">
+                    <input type="text" id="numero" name="numero-mesa" placeholder="numero">
+                    <input type="text" id="descripcion" name="descripcion-mesa" placeholder="descripcion">
+                    <input type="text" id="personas" name="personas-mesa" placeholder="personas">
+                    <select id="estado">
+                        <option value="">Seleccione un estado</option>
+                        <option value="Libre">Libre</option>
+                        <option value="Reservada">Reservada</option>
+                        <option value="Ocupada">Ocupada</option>
+                    </select>
+                    <button id="registrar">Guardar datos</button>
+                </div>
+            </div>
+            <button id="salir" onClick="this.parentElement.close()">❌</button>
+        </dialog>
+        <button id="abrir">Abrir reservas</button>
+
+        <div id="mesas">
+
+        </div>
+    </div>
+
+    <script>
+        const showButton = document.querySelector("#abrir");
+        showButton.addEventListener("click", function () {
+            const alertDialog = document.querySelector("#alert-dialog");
+            alertDialog.show();
+        });
+
+    </script>
+
+    <script>
+        let datosMesa = [];
+        let modo = 0;
+        let numMesa;
+        let validacion = 0;
+
+        function validaciones() {
+            const existe = datosMesa.some(mesa => mesa.numero === numeroMesa);
+            if (existe) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Esa mesa ya existe",
+                    text: `Ya hay una mesa con el número ${numeroMesa}`,
+                    confirmButtonText: "Ok",
+                });
+            } else if (numeroMesa === '') {
+                alert('por favor ingrese el numero de la mesa');
+            } else if (document.getElementById('descripcion').value == '') {
+                alert('por favor ingrese la descripcion de la mesa');
+            } else if (document.getElementById('personas').value == '') {
+                alert('por favor ingrese el numero de personas de la mesa');
+            } else if (document.getElementById('estado').value == '') {
+                alert('por favor ingrese el estado de la mesa');
+            } else {
+                if (validacion === 0) {
+                    guardarMesa();
+                } else if (validacion === 1) {
+                    editarMesa();
+                }
+            }
+        }
+
+        document.getElementById('registrar').addEventListener('click', () => {
+            if (modo == 0) {
+                console.log("guardar mesa");
+                guardarMesa();
+            } else if (modo == 1) {
+                console.log("editar mesa");
+                editarMesa();
+            }
+        });
+
+        function guardarMesa() {
+            const numeroMesa = document.getElementById('numero').value.trim();
+            const mesa = {
+                numero: numeroMesa,
+                descripcion: document.getElementById('descripcion').value.trim(),
+                personas: document.getElementById('personas').value.trim(),
+                estado: document.getElementById('estado').value.trim()
+            }
+            datosMesa.unshift(mesa);
+            limpiar();
+            Swal.fire({
+                icon: "success",
+                title: "Mesa guardada exitosamente",
+                confirmButtonText: "Ok"
+            });
+            pintarMesas();
+        }
+
+        function limpiar() {
+            document.getElementById('numero').value = ''
+            document.getElementById('descripcion').value = ''
+            document.getElementById('personas').value = ''
+            document.getElementById('estado').value = ''
+        }
+
+        function editarMesa() {
+            validacion = 1;
+            let indice = datosMesa.findIndex(it => it.numero == numMesa);
+            datosMesa[indice].numero = document.getElementById("numero").value
+            datosMesa[indice].descripcion = document.getElementById("descripcion").value
+            datosMesa[indice].personas = document.getElementById('personas').value
+            datosMesa[indice].estado = document.getElementById('estado').value
+            pintarMesas();
+            modo = 0;
+            document.getElementById("registrar").textContent = "Guardar Mesa";
+            limpiar();
+        }
+
+        function pintarMesas(lista = datosMesa) {
+            document.getElementById('mesas').textContent = "";
+
+            lista.forEach((item, i) => {
+                let divCard = document.createElement('div');
+                divCard.id = "card";
+
+                switch (item.estado) {
+                    case "Libre":
+                        divCard.style.backgroundColor = "#ffffff";
+                        break;
+                    case "Reservada":
+                        divCard.style.backgroundColor = "#fff176";
+                        break;
+                    case "Ocupada":
+                        divCard.style.backgroundColor = "#ef9a9a";
+                        break;
+                    default:
+                        divCard.style.backgroundColor = "#f5f5f5";
+                }
+
+                let divImagen = document.createElement('div');
+                let imagen = document.createElement('img');
+                imagen.id = "mesa-img";
+                imagen.src = "imgMesa.webp";
+                divImagen.appendChild(imagen);
+                divCard.appendChild(divImagen);
+                document.getElementById('mesas').appendChild(divCard);
+
+                let divTextos = document.createElement('div');
+                let parrafoDescripcion = document.createElement('p');
+                parrafoDescripcion.textContent = item.descripcion;
+                divTextos.appendChild(parrafoDescripcion);
+                divCard.appendChild(divTextos);
+
+                let capacidad = document.createElement('p');
+                capacidad.textContent = item.personas;
+                divTextos.appendChild(capacidad);
+
+                let numeroMesa = document.createElement('span');
+                numeroMesa.textContent = item.numero;
+                divTextos.appendChild(numeroMesa);
+
+                let divBotones = document.createElement('div');
+                let editarBtn = document.createElement('button');
+                editarBtn.textContent = "📝";
+                editarBtn.id = 'btnEditar';
+                divBotones.appendChild(editarBtn);
+                editarBtn.addEventListener("click", () => {
+                    document.getElementById('numero').value = item.numero;
+                    document.getElementById('descripcion').value = item.descripcion;
+                    document.getElementById('personas').value = item.personas;
+                    document.getElementById('estado').value = item.estado;
+                    document.getElementById('registrar').textContent = "Actualizar datos";
+                    modo = 1;
+                    numMesa = item.numero;
+                    Swal.fire({
+                        icon: "success",
+                        title: "Mesa editada exitosamente"
+                    })
+                    const alertDialog = document.querySelector("#alert-dialog");
+                    alertDialog.show();
+                });
+
+                let eliminarBtn = document.createElement('button');
+                eliminarBtn.textContent = "❌";
+                eliminarBtn.id = 'btnEliminar';
+                eliminarBtn.addEventListener("click", () => {
+                    let indice = datosMesa.findIndex(it => it.numero == item.numero);
+                    datosMesa.splice(indice, 1);
+                    pintarMesas();
+                    limpiar();
+                    document.getElementById('registrar').textContent = "Guardar datos";
+                });
+
+                divBotones.appendChild(eliminarBtn);
+                divCard.appendChild(divBotones);
+            });
+        }
+
+        function buscarMesa() {
+            const filtro = [...datosMesa];
+
+            document.getElementById("btnBuscar").addEventListener("click", () => {
+                const numBuscado = document.getElementById("lupa").value.trim();
+
+                const mesasFiltradas = datosMesa.filter(dato => dato.numero.startsWith(numBuscado));
+
+                if (mesasFiltradas.length === 0) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: `No se ha encontrado la mesa ${numBuscado}`,
+                        confirmButtonText: "Ok",
+                    });
+                } else {
+                    pintarMesas(mesasFiltradas);
+                }
+            });
+
+            document.getElementById("limpiarBusqueda").addEventListener("click", () => {
+                document.getElementById('lupa').value = '';
+                pintarMesas(datosMesa);
+            });
+        }
+        buscarMesa();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

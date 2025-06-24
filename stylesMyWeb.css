@@ -39,7 +39,8 @@ body {
 .Trabajo_5,
 .Trabajo_6,
 .Trabajo_7,
-.Trabajo_8 {
+.Trabajo_8,
+.Trabajo_9 {
     height: 350px;
     width: 300px;
     display: flex;
@@ -132,6 +133,16 @@ body {
     filter: drop-shadow(5px -4px 10px #000);
 }
 
+.imagen_trabajo_9 {
+    height: 310px;
+    width: 280px;
+    background-image: url(https://www.nintendolife.com/tags/donkey-kong);
+    background-size: cover;
+    margin-bottom: 200px;
+    transition: 300ms;
+    filter: drop-shadow(5px -4px 10px #000);
+}
+
 .detalle_1,
 .detalle_2,
 .detalle_3,
@@ -139,7 +150,8 @@ body {
 .detalle_5,
 .detalle_6,
 .detalle_7,
-.detalle_8 {
+.detalle_8,
+.detalle_9 {
     height: 200px;
     width: 300px;
     background-color: rgb(177, 123, 194);
@@ -216,6 +228,13 @@ body {
     background-image: url(fotos_MyWeb/Fox.jpeg);
 }
 
+.card:hover .imagen_trabajo_9 {
+    transform: translateY(-40px);
+    transition: 300ms;
+    filter: none;
+    background-image: url(https://www.nintendolife.com/tags/donkey-kong);
+}
+
 .card:hover .Trabajo_1 {
     background-image: radial-gradient(white, rgb(146, 10, 146));
 }
@@ -248,7 +267,10 @@ body {
     background-image: radial-gradient(white, rgb(146, 10, 146));
 }
 
-/*texto y botton*/
+.card:hover .Trabajo_9 {
+    background-image: radial-gradient(white, rgb(146, 10, 146));
+}
+
 
 h1 {
     display: flex;

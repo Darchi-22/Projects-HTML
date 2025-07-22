@@ -40,7 +40,9 @@ body {
 .Trabajo_6,
 .Trabajo_7,
 .Trabajo_8,
-.Trabajo_9 {
+.Trabajo_9,
+.Trabajo_10,
+.Trabajo_11 {
     height: 350px;
     width: 300px;
     display: flex;
@@ -136,7 +138,27 @@ body {
 .imagen_trabajo_9 {
     height: 310px;
     width: 280px;
-    background-image: url(https://www.nintendolife.com/tags/donkey-kong);
+    background-image: url(fotos_MyWeb/fox2.jpeg);
+    background-size: cover;
+    margin-bottom: 200px;
+    transition: 300ms;
+    filter: drop-shadow(5px -4px 10px #000);
+}
+
+.imagen_trabajo_10 {
+    height: 310px;
+    width: 280px;
+    background-image: url(fotos_MyWeb/fox2.jpeg);
+    background-size: cover;
+    margin-bottom: 200px;
+    transition: 300ms;
+    filter: drop-shadow(5px -4px 10px #000);
+}
+
+.imagen_trabajo_11 {
+    height: 310px;
+    width: 280px;
+    background-image: url(fotos_MyWeb/fox2.jpeg);
     background-size: cover;
     margin-bottom: 200px;
     transition: 300ms;
@@ -151,7 +173,9 @@ body {
 .detalle_6,
 .detalle_7,
 .detalle_8,
-.detalle_9 {
+.detalle_9,
+.detalle_10,
+.detalle_11 {
     height: 200px;
     width: 300px;
     background-color: rgb(177, 123, 194);
@@ -165,8 +189,6 @@ body {
     justify-content: center;
     transition: 300ms;
 }
-
-/*Hover*/
 
 .card:hover {
     transform: scale(1.1);
@@ -232,7 +254,21 @@ body {
     transform: translateY(-40px);
     transition: 300ms;
     filter: none;
-    background-image: url(https://www.nintendolife.com/tags/donkey-kong);
+    background-image: url(fotos_MyWeb/Fox.jpeg);
+}
+
+.card:hover .imagen_trabajo_10 {
+    transform: translateY(-40px);
+    transition: 300ms;
+    filter: none;
+    background-image: url(fotos_MyWeb/Fox.jpeg);
+}
+
+.card:hover .imagen_trabajo_11 {
+    transform: translateY(-40px);
+    transition: 300ms;
+    filter: none;
+    background-image: url(fotos_MyWeb/Fox.jpeg);
 }
 
 .card:hover .Trabajo_1 {
@@ -271,6 +307,13 @@ body {
     background-image: radial-gradient(white, rgb(146, 10, 146));
 }
 
+.card:hover .Trabajo_10 {
+    background-image: radial-gradient(white, rgb(146, 10, 146));
+}
+
+.card:hover .Trabajo_11 {
+    background-image: radial-gradient(white, rgb(146, 10, 146));
+}
 
 h1 {
     display: flex;
